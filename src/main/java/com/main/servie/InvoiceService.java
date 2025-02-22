@@ -87,7 +87,7 @@ public class InvoiceService {
 
     private void sendTelexNotification(User user, String status) {
         try {
-            String telexApiUrl = "https://ping.telex.im/v1/webhooks/01951f6e-97ab-738d-b6e0-ba5527c79e0f";
+            String telexApiUrl = "https://ping.telex.im/v1/webhooks/01952d9c-d21a-7e8f-9ba9-aff2c9090048";
 
             Map<String, String> payload = new HashMap<>();
             payload.put("event_name", "Invoice Generation Notification");
