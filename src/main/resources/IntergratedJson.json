@@ -1,0 +1,35 @@
+{
+  "data": {
+    "date": {
+      "created_at": "2025-02-21",
+      "updated_at": "2025-02-21"
+    },
+    "descriptions": {
+      "app_name": "Monthly Invoice Generator",
+      "app_description": "automated monthly invoice generator",
+      "app_logo": "https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22istockphoto-2078490118-2048x2048.jpg%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22signedurl_expire%22%3A%222028-02-21T17%3A55%3A11.339Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F%2F58f9101282954304%2Fistockphoto-2078490118-2048x2048.jpg%3FExpires%3D1834768511%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DpfcxPbpR7i1rF9ijQsY4Y8ztylU22zCmCl0XMOMHpAteevcyRdOPnI6KIP349A5vDuohESeJs90exzBnSXqyQ6C-Ftby7PSRvsFFsG1xk6PEgZwMl7-vSVXdRxt69FgsqxTZ4~hN2pXQRYJsGYdhGYsVtpi7e30ETSs1NuT2s7ngRCoN453BYVW7C7stdqRGnlmT2~yDTuGNp7Esi4K4qgtwdUaGtviKFM20yLwmFStC4rG0BgWdFMf1CMwkHypifURZm3VmxJXVagMXxBL9X8WJLCHpomw5nQQCF8n0fS8MhlPKh1z1hHwl4w0jPOO1Bd7QV4Onv5dWfdWGJpxv~Q__%22%7D",
+      "app_url": "https://3ngl9qs2-8080.uks1.devtunnels.ms/",
+      "background_color": "#fff"
+    },
+    "is_active": true,
+    "integration_type": "interval",
+    "integration_category": "Task Automation",
+    "key_features": [
+      "queries db for paid subscriptions",
+      "generates an invoice",
+      "sends the invoice to the recipient via an email",
+      "sends notification to telex"
+    ],
+    "author": "nev a",
+    "settings": [
+      {
+        "label": "time interval",
+        "type": "text",
+        "required": true,
+        "default": "*/2 * * * *"
+      }
+    ],
+    "target_url": "https://3ngl9qs2-8080.uks1.devtunnels.ms/api/integration",
+    "tick_url": "https://3ngl9qs2-8080.uks1.devtunnels.ms/api/integration"
+  }
+}
