@@ -24,8 +24,8 @@ public class InvoiceService {
     private final CsvUserService csvUserService;
     private final TaskScheduler taskScheduler;
     private ScheduledFuture<?> scheduledTask;
-    private final AtomicReference<String> cronExpression = new AtomicReference<>("0 30 15 * * *");
-   // private final AtomicReference<String> cronExpression = new AtomicReference<>("0 */2 * * * *");
+    //private final AtomicReference<String> cronExpression = new AtomicReference<>("0 30 15 * * *");
+    private final AtomicReference<String> cronExpression = new AtomicReference<>("0 */2 * * * *");
 
     public InvoiceService(JavaMailSender mailSender, CsvUserService csvUserService, TaskScheduler taskScheduler) {
         this.mailSender = mailSender;
@@ -88,6 +88,7 @@ public class InvoiceService {
     private void sendTelexNotification(User user, String status) {
         try {
             String telexApiUrl = "https://ping.telex.im/v1/webhooks/01952d9c-d21a-7e8f-9ba9-aff2c9090048";
+
 
             Map<String, String> payload = new HashMap<>();
             payload.put("event_name", "Invoice Generation Notification");
