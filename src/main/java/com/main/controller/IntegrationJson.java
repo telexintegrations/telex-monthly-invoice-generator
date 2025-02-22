@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
@@ -24,14 +25,13 @@ public class IntegrationJson {
     @GetMapping
     public Map<String, Object> telexJson() {
         try {
-            // Load the JSON file from resources
-            Path jsonPath = new ClassPathResource("IntergratedJson.json").getFile().toPath();
-            String jsonContent = Files.readString(jsonPath);
+            // Load the JSON file as an InputStream from classpath
+            InputStream inputStream = new ClassPathResource("IntegratedJson.json").getInputStream();
 
-            // Convert JSON string to a Map and return it
-            return objectMapper.readValue(jsonContent, Map.class);
+            // Convert JSON InputStream to a Map
+            return objectMapper.readValue(inputStream, Map.class);
         } catch (IOException e) {
-            log.error("Error reading integration.json file", e);
+            log.error("Error reading IntegratedJson.json file", e);
             return Map.of("error", "Failed to load JSON file");
         }
     }

@@ -3,13 +3,17 @@ package com.main.servie;
 import com.main.entity.User;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -19,7 +23,6 @@ public class InvoiceService {
     private final JavaMailSender mailSender;
     private final CsvUserService csvUserService;
     private final TaskScheduler taskScheduler;
-
     private ScheduledFuture<?> scheduledTask;
     private final AtomicReference<String> cronExpression = new AtomicReference<>("0 */2 * * * *");
 
@@ -73,8 +76,30 @@ public class InvoiceService {
 
             mailSender.send(message);
             log.info("Invoice email sent to: {}", user.getEmail());
+
+            sendTelexNotification(user, "Invoice sent successfully to ");
         } catch (Exception e) {
             log.error("Failed to send email to user: {} :: {}", user.getEmail(), e.getMessage());
+            sendTelexNotification(user, "Invoice not sent to ");
+        }
+    }
+
+    private void sendTelexNotification(User user, String status) {
+        try {
+            String telexApiUrl = "https://ping.telex.im/v1/webhooks/01951f6e-97ab-738d-b6e0-ba5527c79e0f";
+
+            Map<String, String> payload = new HashMap<>();
+            payload.put("event_name", "Invoice Generation Notification");
+            payload.put("status", "success");
+            payload.put("message", status + user.getEmail());
+            payload.put("username", "nevis");
+
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.postForEntity(telexApiUrl, payload, String.class);
+
+            log.info("Telex notification response: {}", response.getStatusCode());
+        } catch (Exception e) {
+            log.error("An error occurred when sending notification to Telex for user: {} :: {}", user.getEmail(), e.getMessage());
         }
     }
 }
