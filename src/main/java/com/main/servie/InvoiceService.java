@@ -24,7 +24,7 @@ public class InvoiceService {
     private final CsvUserService csvUserService;
     private final TaskScheduler taskScheduler;
     private ScheduledFuture<?> scheduledTask;
-    private final AtomicReference<String> cronExpression = new AtomicReference<>("0 */2 * * * *");
+    private final AtomicReference<String> cronExpression = new AtomicReference<>("1 0 * * * *");
 
     public InvoiceService(JavaMailSender mailSender, CsvUserService csvUserService, TaskScheduler taskScheduler) {
         this.mailSender = mailSender;
