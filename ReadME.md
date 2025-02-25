@@ -132,6 +132,7 @@ telex-monthly-invoice-generator/
 8. In the **Output Section**, select **Custom** and choose the required channels.
 9. Under **Settings**, specify the required cron job for scheduling invoice processing.
 10. You can adjust the cron job however you need, but by default, it is set to start at the first second of the first minute of every hour.
+11. Check the notifications in the channel created
 
 
 
